@@ -1,6 +1,6 @@
 {
     "name": "alahawash/trip-sorter",
-    "description": "A small API that takes a list of unordered borading passes, sorts them and output in a readable format.",
+    "description": "A small API that takes a list of unordered boarding passes, sorts them and output in a readable format.",
     "type": "project",
     "authors": [
         {
@@ -10,6 +10,12 @@
     ],
     "require": {},
     "require-dev": {
-        "phpspec/phpspec": "^3.4"
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {"TripSorter\\": "src/TripSorter"}
+    },
+    "autoload-dev": {
+        "psr-4": {"TripSorter\\": "tests/TripSorter"}
     }
 }
