@@ -36,6 +36,16 @@ class TrainBoardingCard extends AbstractBoardingCard
     }
 
     /**
+     * Get train number.
+     *
+     * @return string
+     */
+    public function getTrain()
+    {
+        return $this->train;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function __toString()
