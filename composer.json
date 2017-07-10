@@ -1,0 +1,15 @@
+{
+    "name": "alahawash/trip-sorter",
+    "description": "A small API that takes a list of unordered borading passes, sorts them and output in a readable format.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ala' Hawash",
+            "email": "ala.hawash@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpspec/phpspec": "^3.4"
+    }
+}
