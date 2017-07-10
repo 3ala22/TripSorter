@@ -9,12 +9,12 @@ of the project (make sure you have [Composer](http://getcomposer.org) installed)
 php composer.phar install --prefer-dist
 ```
 
-##Assumptions
+## Assumptions
 - Input is read from a json file.
 - A train and a flight must have a seat assignment.
 
 
-##Unit Tests
+## Unit Tests
 Unit tests are located in the test folder. To run the tests: 
 ```bash
 ./vendor/phpunit/phpunit/phpunit
