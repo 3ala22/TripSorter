@@ -1,6 +1,7 @@
 <?php
 
 namespace TripSorter\BoardingCard\Contract;
+use TripSorter\Destination\DestinationInterface;
 
 /**
  * Interface BoardingCardInterface
@@ -14,14 +15,14 @@ interface BoardingCardInterface
     /**
      * Get trip departure city.
      *
-     * @return string
+     * @return DestinationInterface
      */
     public function getDeparture();
 
     /**
      * Get trip arrival city.
      *
-     * @return string
+     * @return DestinationInterface
      */
     public function getArrival();
 

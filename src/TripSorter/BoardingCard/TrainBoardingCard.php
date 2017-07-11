@@ -7,6 +7,7 @@
  */
 
 namespace TripSorter\BoardingCard;
+use TripSorter\Destination\DestinationInterface;
 
 /**
  * Train Boarding Card
@@ -23,12 +24,12 @@ class TrainBoardingCard extends AbstractBoardingCard
 
     /**
      * TrainBoardingCard constructor.
-     * @param string $departure
-     * @param string $arrival
+     * @param DestinationInterface $departure
+     * @param DestinationInterface $arrival
      * @param string $seat
      * @param string $train
      */
-    public function __construct($departure, $arrival, $seat, $train)
+    public function __construct(DestinationInterface $departure, DestinationInterface $arrival, $seat, $train)
     {
         parent::__construct($departure, $arrival, $seat);
 

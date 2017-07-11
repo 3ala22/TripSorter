@@ -3,6 +3,7 @@
 namespace TripSorter\BoardingCard;
 
 use TripSorter\BoardingCard\Contract\BoardingCardInterface;
+use TripSorter\Destination\DestinationInterface;
 
 abstract class AbstractBoardingCard implements BoardingCardInterface
 {
@@ -25,11 +26,11 @@ abstract class AbstractBoardingCard implements BoardingCardInterface
     /**
      * Construct a boarding card.
      *
-     * @param string $departure
-     * @param string $arrival
+     * @param DestinationInterface $departure
+     * @param DestinationInterface $arrival
      * @param string $seat
      */
-    public function __construct($departure, $arrival, $seat)
+    public function __construct(DestinationInterface $departure, DestinationInterface $arrival, $seat)
     {
         $this->departure = $departure;
         $this->arrival = $arrival;

@@ -7,6 +7,7 @@ use TripSorter\BoardingCard\BusBoardingCard;
 use TripSorter\BoardingCard\Contract\BoardingCardInterface;
 use TripSorter\BoardingCard\FlightBoardingCard;
 use TripSorter\BoardingCard\TrainBoardingCard;
+use TripSorter\Destination\Destination;
 
 class TripSorterTest extends TestCase
 {
@@ -33,13 +34,19 @@ class TripSorterTest extends TestCase
 
     public function setUp()
     {
-        $this->startingBoardingCard = new TrainBoardingCard('Madrid', 'Barcelona', '45B', '78A');
+        $madrid = new Destination('Madrid');
+        $barcelona = new Destination('Barcelona');
+        $geronaAirport = new Destination('Gerona Airport');
+        $stockholm = new Destination('Stockholm');
+        $newYorkJFK = new Destination('New York JFK');
 
-        $this->firstStopBoardingCard = new BusBoardingCard('Barcelona', 'Gerona Airport', null, 'the airport');
+        $this->startingBoardingCard = new TrainBoardingCard($madrid, $barcelona, '45B', '78A');
 
-        $this->secondStopBoardingCard = new FlightBoardingCard('Gerona Airport', 'Stockholm', '3A', 'SK455', '45B', '344');
+        $this->firstStopBoardingCard = new BusBoardingCard($barcelona, $geronaAirport, null, 'the airport');
 
-        $this->lastBoarding = new FlightBoardingCard('Stockholm', 'New York JFK', '7B', 'SK22', '22', null);
+        $this->secondStopBoardingCard = new FlightBoardingCard($geronaAirport, $stockholm, '3A', 'SK455', '45B', '344');
+
+        $this->lastBoarding = new FlightBoardingCard($stockholm, $newYorkJFK, '7B', 'SK22', '22', null);
     }
 
     public function testSort()

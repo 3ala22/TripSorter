@@ -1,6 +1,7 @@
 <?php
 
 namespace TripSorter\BoardingCard;
+use TripSorter\Destination\DestinationInterface;
 
 /**
  * Flight Boarding Card
@@ -27,14 +28,14 @@ class FlightBoardingCard extends AbstractBoardingCard
 
     /**
      * FlightBoardingCard constructor.
-     * @param string $departure
-     * @param string $arrival
+     * @param DestinationInterface $departure
+     * @param DestinationInterface $arrival
      * @param string $seat
      * @param string $flight
      * @param string $gate
      * @param string $baggageTicketCounter
      */
-    public function __construct($departure, $arrival, $seat, $flight, $gate, $baggageTicketCounter)
+    public function __construct(DestinationInterface $departure, DestinationInterface $arrival, $seat, $flight, $gate, $baggageTicketCounter)
     {
         parent::__construct($departure, $arrival, $seat);
 

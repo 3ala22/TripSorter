@@ -2,56 +2,10 @@
 
 namespace TripSorter;
 
-use TripSorter\BoardingCard\BusBoardingCard;
 use TripSorter\BoardingCard\Contract\BoardingCardInterface;
-use TripSorter\BoardingCard\FlightBoardingCard;
-use TripSorter\BoardingCard\TrainBoardingCard;
 
 class TripSorter
 {
-
-    public function parse(array $rawBoardingCards)
-    {
-        $boardingCards = [];
-        foreach ($rawBoardingCards as $boardingCard) {
-            $type = $boardingCard['Type'];
-
-            switch ($type) {
-                case 'Bus':
-                    array_push($boardingCards, new BusBoardingCard(
-                        $boardingCard['Departure'],
-                        $boardingCard['Arrival'],
-                        array_key_exists('Seat', $boardingCard) ? $boardingCard['Seat'] : null,
-                        $boardingCard['Bus']
-                    ));
-                    break;
-                case 'Train':
-                    array_push($boardingCards, new TrainBoardingCard(
-                        $boardingCard['Departure'],
-                        $boardingCard['Arrival'],
-                        $boardingCard['Seat'],
-                        $boardingCard['Train']
-                    ));
-                    break;
-                case 'Flight':
-                    array_push($boardingCards, new FlightBoardingCard(
-                        $boardingCard['Departure'],
-                        $boardingCard['Arrival'],
-                        $boardingCard['Seat'],
-                        $boardingCard['Flight'],
-                        $boardingCard['Gate'],
-                        array_key_exists('BaggageTicketCounter', $boardingCard) ? $boardingCard['BaggageTicketCounter'] : null
-                    ));
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        return $boardingCards;
-
-    }
-
     /**
      * Sort a set of unordered boarding cards.
      *
@@ -70,8 +24,8 @@ class TripSorter
         // fill maps.
         /** @var BoardingCardInterface $boardingCard */
         foreach ($boardingCards as $boardingCard) {
-            $destinationsMap[$boardingCard->getArrival()] = true;
-            $tripMap[$boardingCard->getDeparture()] = $boardingCard;
+            $destinationsMap[(string) $boardingCard->getArrival()] = true;
+            $tripMap[(string) $boardingCard->getDeparture()] = $boardingCard;
         }
 
         // find first leg.
@@ -88,11 +42,11 @@ class TripSorter
 
         // we found first, we now follow the trip map to fill the sorted array.
         $sortedCards = [$first];
-        $next = $tripMap[$first->getArrival()];
+        $next = $tripMap[(string) $first->getArrival()];
 
         while ($next) {
             array_push($sortedCards, $next);
-            $arrival = $next->getArrival();
+            $arrival = (string) $next->getArrival();
             if (array_key_exists($arrival, $tripMap))
                 $next = $tripMap[$arrival];
             else
